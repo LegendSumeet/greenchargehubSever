@@ -1,0 +1,17 @@
+{
+  "name": "greenchargehubbackend",
+  "version": "1.0.0",
+  "description": "greenchargehub for suraj things",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "greencharge"
+  ],
+  "author": "suraj sahu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
