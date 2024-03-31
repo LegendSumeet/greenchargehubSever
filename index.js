@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
     res.end();
 });
 
-// Specify the port to listen on
+
 const port = 3000;
 
 // Start the server
