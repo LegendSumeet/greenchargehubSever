@@ -1,23 +1,34 @@
+const express = require("express");
 
-const dotenv = require("dotenv");
+const connectDB = require("./utils/db.js");
+const adminRouter = require("./controller/admin");
+const stationRouter = require("./controller/station");
+const bookingRouter = require("./controller/booking");
+const userRouter = require("./controller/user");
 
-dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 4000;
 
-const http = require('http');
+app.use(express.json());
 
-const mongoose = require("mongoose");
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write('<h1>Hello, Node.js HTTP Server!</h1>');
-    res.end();
+
+app.use("/superuser",adminRouter);
+app.use("/createstation",stationRouter);
+app.use("/createbooking",bookingRouter);
+app.use("/createuser",userRouter);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the GreenChargeHub API!");
 });
 
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("DB Connected!"))
-  .catch((err) => console.log(err));
-
-server.listen(process.env.PORT, () => {
-    console.log(`Node.js HTTP server is running on port `);
-});
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server listening on Port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Error connecting to database:", err);
+    process.exit(1);
+  });
