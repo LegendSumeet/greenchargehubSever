@@ -1,21 +1,23 @@
-// fileName : server.js 
-// Example using the http module
+
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 const http = require('http');
 
-// Create an HTTP server
-const server = http.createServer((req, res) => {
-    // Set the response headers
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+const mongoose = require("mongoose");
 
-    // Write the response content
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write('<h1>Hello, Node.js HTTP Server!</h1>');
     res.end();
 });
 
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("DB Connected!"))
+  .catch((err) => console.log(err));
 
-const port = 3000;
-
-// Start the server
-server.listen(port, () => {
-    console.log(`Node.js HTTP server is running on port ${port}`);
+server.listen(process.env.PORT, () => {
+    console.log(`Node.js HTTP server is running on port `);
 });
