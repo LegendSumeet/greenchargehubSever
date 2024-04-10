@@ -41,7 +41,11 @@ const stationSchema = new Schema({
     isapproved: {
         type: Boolean,
         default: false
-    }
+    },
+    plugs: {
+        type: String,
+        required: true
+    },
 
 }
     , { timestamps: true });
