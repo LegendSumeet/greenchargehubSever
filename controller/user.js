@@ -72,4 +72,15 @@ router.delete('/user/:id', async (req, res) => {
     }
 });
 
+router.post('/user/login/:email/:password', async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.params.email, password: req.params.password });
+        res.send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
+
+
 module.exports = router;

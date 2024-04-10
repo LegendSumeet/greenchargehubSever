@@ -69,4 +69,18 @@ router.delete('/admin/:id', async (req, res) => {
     }
 });
 
+
+router.get('/admin/login/:email/:password', async (req, res) => {
+    try {
+        const admin = await Admin.findOne({ email: req.params.email, password: req.params.password });
+        if (!admin) {
+            return res.status(404).send({ message: 'Admin not found' });
+        }
+        res.send(admin);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
 module.exports = router;

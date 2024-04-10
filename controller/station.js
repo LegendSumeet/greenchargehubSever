@@ -99,6 +99,17 @@ router.patch('/station/reject/:id', async (req, res) => {
     }
 });
 
-
+router.get('/station/login/:email/:password', async (req, res) => {
+    try {
+        const station = await Station.findOne({ ownerEmail: req.params.email, ownerPassword: req.params.password });
+        if (!station) {
+            return res.status(404).send({ message: 'Station not found' });
+        }
+        res.send(station);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+);
 
 module.exports = router;
