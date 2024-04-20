@@ -46,7 +46,8 @@ const stationSchema = new Schema({
         type: String,
         required: true
     },
-    image: {
+    image:{
+        default:"https://media.licdn.com/dms/image/D4D12AQH51-0R0IbyUw/article-cover_image-shrink_600_2000/0/1691261498185?e=2147483647&v=beta&t=lnS2UnbsZ6Ag04Zg9R7bXOE9NH92mGGbTYCdmjikG6M",
 
         type: String,
         required: true
