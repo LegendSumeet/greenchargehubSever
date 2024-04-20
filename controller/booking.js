@@ -38,7 +38,7 @@ router.get('/booking/:id', async (req, res) => {
 router.get('/userbooking/:phonenumber', async (req, res) => {
     try {
         const phoneNumber = req.params.phonenumber;
-        const bookings = await Booking.find({ phoneNumber: phoneNumber });
+        const bookings = await Booking.find({ phone: phoneNumber });
         res.send(bookings);
     } catch (error) {
         res.status(500).send(error);
