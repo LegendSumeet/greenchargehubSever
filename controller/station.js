@@ -89,7 +89,7 @@ router.patch('/station/approve/:id', async (req, res) => {
 
 router.patch('/station/reject/:id', async (req, res) => {
     try {
-        const station = await Station.findByIdAndUpdate(req.params.id, { isapproved: false }, { new: true });
+        const station = await Station.findByIdAndDelete(req.params.id);
         if (!station) {
             return res.status(404).send({ message: 'Station not found' });
         }
@@ -98,6 +98,9 @@ router.patch('/station/reject/:id', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+
+
 
 router.get('/station/login/:email/:password', async (req, res) => {
     try {
