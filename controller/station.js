@@ -112,4 +112,15 @@ router.get('/station/login/:email/:password', async (req, res) => {
 }
 );
 
+
+
+
+router.get('/adminstation', async (req, res) => {
+    try {
+        const stations = await Station.find({ isapproved: false});
+        res.send(stations);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
 module.exports = router;
