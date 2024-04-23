@@ -18,9 +18,13 @@ app.use("/createstation",stationRouter);
 app.use("/createbooking",bookingRouter);
 app.use("/createuser",userRouter);
 
+app.use(express.static(path.join(__dirname, "public")));
+
 app.get("/", (req, res) => {
-  res.send("Welcome to the GreenChargeHub API!");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+
+
 
 connectDB()
   .then(() => {
