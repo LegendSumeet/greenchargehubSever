@@ -46,6 +46,16 @@ router.get('/userbooking/:phonenumber', async (req, res) => {
 });
 
 
+router.get('/adminbooking/:id', async (req, res) => {
+    try {
+        const phoneNumber = req.params.id;
+        const bookings = await Booking.find({ admin:phoneNumber });
+        res.send(bookings);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 
 router.patch('/booking/:id', async (req, res) => {
     const updates = Object.keys(req.body);
@@ -80,5 +90,9 @@ router.delete('/booking/:id', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+
+
+
 
 module.exports = router;
