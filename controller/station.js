@@ -16,7 +16,7 @@ router.post('/station', async (req, res) => {
 // Read all stations
 router.get('/station', async (req, res) => {
     try {
-        const stations = await Station.find();
+        const stations = await Station.find({ isapproved: true});
         res.send(stations);
     } catch (error) {
         res.status(500).send(error);
